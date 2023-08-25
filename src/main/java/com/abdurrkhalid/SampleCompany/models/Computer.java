@@ -1,4 +1,4 @@
-package models;
+package com.abdurrkhalid.SampleCompany.models;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
