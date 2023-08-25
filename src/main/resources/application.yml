@@ -1,0 +1,17 @@
+server:
+  port: 9090
+spring:
+  application:
+    name: sampleCompany
+  datasource:
+    password: password
+    url: jdbc:postgresql://localhost:5432/sampleCompany
+    username: abdurrkhalid
+  jpa:
+    hibernate:
+      ddl-auto: create-drop
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+        format_sql: true
+    show-sql: true
