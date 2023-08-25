@@ -5,6 +5,8 @@ services:
     environment:
       POSTGRES_USER: root
       POSTGRES_PASSWORD: toor
+      POSTGRES_DB: sampleCompany
+
       PGDATA: /data/postgres
     volumes:
       - postgres:/data/postgres
