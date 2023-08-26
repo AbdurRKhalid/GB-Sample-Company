@@ -20,10 +20,14 @@ public class ComputerController {
     public ResponseEntity addComputer(@RequestBody Computer computer) {
         try {
             HashMap response = new HashMap();
-            computerService.saveComputer(computer);
+            Computer savedComputer = computerService.saveComputer(computer);
             response.put("success", true);
-            response.put("message", "Computer Added Successfully to Database!");
-            return new ResponseEntity(response, HttpStatus.CREATED);
+            if (savedComputer == null) {
+                response.put("message", "Computer Did not save and System Admin has been Notified!");
+            } else {
+                response.put("message", "Computer Added Successfully to Database!");
+            }
+            return new ResponseEntity(response, HttpStatus.OK);
         } catch (Exception e) {
             HashMap response = new HashMap();
             response.put("success", false);
