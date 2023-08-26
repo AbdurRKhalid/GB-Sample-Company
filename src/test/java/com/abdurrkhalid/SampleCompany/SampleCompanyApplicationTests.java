@@ -1,7 +1,15 @@
 package com.abdurrkhalid.SampleCompany;
 
 import com.abdurrkhalid.SampleCompany.models.Computer;
+import com.abdurrkhalid.SampleCompany.repositories.ComputerRepository;
+import com.abdurrkhalid.SampleCompany.services.ComputerService;
+import com.abdurrkhalid.SampleCompany.services.ComputerServiceImpl;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.mockito.MockitoAnnotations;
+import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.web.client.TestRestTemplate;
@@ -17,18 +25,17 @@ import static org.springframework.data.util.Predicates.isTrue;
 
 @SpringBootTest
 class SampleCompanyApplicationTests {
-	@Test
-	void contextLoads() {
-	}
+    @Autowired
+    ComputerService computerService;
 
-	@Test
-	public void addComputerTest() throws Exception {
-		RestTemplate restTemplate = new RestTemplate();
-		String url = "http://localhost:9090/computers/add";
-		URI uri = new URI(url);
-		Computer computer = new Computer(null, "MAC", "CARK", "IP", "ARK",  "Desc");
-		HttpEntity<Computer> request = new HttpEntity<>(computer);
-		ResponseEntity result = restTemplate.postForEntity(uri, request, String.class);
-		Assert.isTrue(result.getStatusCode() == HttpStatus.OK);
-	}
+    @Test
+    void contextLoads() {
+    }
+
+    @Test
+    void addComputerTest() {
+        Computer computer = new Computer(null, "ip", "cname", "mac", "ark", "desc");
+        Computer saved = computerService.saveComputer(computer);
+        Assert.isTrue(saved != null);
+    }
 }
