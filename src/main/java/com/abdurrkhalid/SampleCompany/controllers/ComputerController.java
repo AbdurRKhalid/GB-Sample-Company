@@ -5,6 +5,8 @@ import com.abdurrkhalid.SampleCompany.services.ComputerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("computers")
 public class ComputerController {
@@ -15,5 +17,10 @@ public class ComputerController {
     public String addComputer(@RequestBody Computer computer) {
         Computer computer1 = computerService.saveComputer(computer);
         return "Added!";
+    }
+
+    @GetMapping("/get-all")
+    public List getComputers() {
+        return computerService.getAllComputers();
     }
 }
