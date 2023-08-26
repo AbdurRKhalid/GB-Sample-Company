@@ -48,6 +48,13 @@ public class ComputerServiceImpl implements ComputerService {
         computerRepository.deleteById(id);
     }
 
+    @Override
+    public Computer reassignComputer(Long id, String abbreviation) {
+        Computer computer = computerRepository.findById(id).get();
+        computer.setEmployeeAbbreviation(abbreviation);
+        return computerRepository.save(computer);
+    }
+
     public ResponseEntity sendNotification(String level, String abbreviation, String message){
         String url = "http://localhost:8080/api/notify";
 

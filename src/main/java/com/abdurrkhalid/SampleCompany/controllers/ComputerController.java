@@ -88,7 +88,7 @@ public class ComputerController {
         }
     }
 
-    @DeleteMapping("delete-by-id/{id}")
+    @DeleteMapping("/delete-by-id/{id}")
     public ResponseEntity deleteById(@PathVariable Long id) {
         try {
             computerService.deleteById(id);
@@ -103,6 +103,22 @@ public class ComputerController {
             response.put("message", "Error Occurred While Deleting the Computer!");
             return new ResponseEntity(response, HttpStatus.BAD_REQUEST);
         }
+    }
 
+    @GetMapping("/reassign/{id}/{abbreviation}")
+    public ResponseEntity reassignComputer(@PathVariable Long id, @PathVariable String abbreviation) {
+        try {
+            computerService.reassignComputer(id, abbreviation);
+            HashMap response = new HashMap();
+            response.put("success", true);
+            response.put("message", "Computer Reassigned Successfully!");
+            return new ResponseEntity(response, HttpStatus.OK);
+        }catch (Exception e) {
+            HashMap response = new HashMap();
+            response.put("success", false);
+            response.put("error", e.getMessage());
+            response.put("message", "Error Occurred While Reassigning!");
+            return new ResponseEntity(response, HttpStatus.BAD_REQUEST);
+        }
     }
 }
