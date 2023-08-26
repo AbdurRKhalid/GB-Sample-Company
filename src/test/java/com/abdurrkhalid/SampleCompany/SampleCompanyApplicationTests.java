@@ -48,12 +48,12 @@ class SampleCompanyApplicationTests {
     void addComputerTest() {
         Computer computer = new Computer(null, "ip", "cname", "mac", "ark", "desc");
         Computer saved = computerService.saveComputer(computer);
-        assertEquals(saved.getComputerName(), "cname");
+        assertEquals(saved.getComputerName(), "cname", "Add Computer Test");
     }
 
     @Test
     void getAllComputersTest() {
         List<Computer> computers = computerService.getAllComputers();
-        assertEquals(computers.size(),1);
+        assertEquals(computers.size(),1, "Get All Computers Test");
     }
 }
