@@ -43,6 +43,11 @@ public class ComputerServiceImpl implements ComputerService {
         return computerRepository.findById(id);
     }
 
+    @Override
+    public void deleteById(Long id) {
+        computerRepository.deleteById(id);
+    }
+
     public ResponseEntity sendNotification(String level, String abbreviation, String message){
         String url = "http://localhost:8080/api/notify";
 

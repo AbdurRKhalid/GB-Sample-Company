@@ -10,4 +10,5 @@ public interface ComputerService {
     List<Computer> getAllComputers();
     List<Computer> findByAbbreviation(String abbreviation);
     Optional<Computer> findById(Long id);
+    void deleteById(Long id);
 }

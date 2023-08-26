@@ -71,7 +71,7 @@ public class ComputerController {
         }
     }
 
-    @GetMapping("get-by-id/{id}")
+    @GetMapping("/get-by-id/{id}")
     public ResponseEntity getComputerById(@PathVariable Long id) {
         try {
             HashMap response = new HashMap();
@@ -86,5 +86,23 @@ public class ComputerController {
             response.put("message", "Error Occurred While Fetching the Computers!");
             return new ResponseEntity(response, HttpStatus.BAD_REQUEST);
         }
+    }
+
+    @DeleteMapping("delete-by-id/{id}")
+    public ResponseEntity deleteById(@PathVariable Long id) {
+        try {
+            computerService.deleteById(id);
+            HashMap response = new HashMap();
+            response.put("success", true);
+            response.put("message", "Computer Deleted Successfully!");
+            return new ResponseEntity(response, HttpStatus.OK);
+        }catch (Exception e) {
+            HashMap response = new HashMap();
+            response.put("success", false);
+            response.put("error", e.getMessage());
+            response.put("message", "Error Occurred While Deleting the Computer!");
+            return new ResponseEntity(response, HttpStatus.BAD_REQUEST);
+        }
+
     }
 }
