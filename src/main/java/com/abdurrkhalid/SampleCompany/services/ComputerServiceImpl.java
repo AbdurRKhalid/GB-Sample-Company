@@ -9,6 +9,7 @@ import org.springframework.web.client.RestTemplate;
 
 import java.util.HashMap;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class ComputerServiceImpl implements ComputerService {
@@ -35,6 +36,11 @@ public class ComputerServiceImpl implements ComputerService {
     @Override
     public List<Computer> findByAbbreviation(String abbreviation) {
         return computerRepository.findComputerByEmployeeAbbreviation(abbreviation);
+    }
+
+    @Override
+    public Optional<Computer> findById(Long id) {
+        return computerRepository.findById(id);
     }
 
     public ResponseEntity sendNotification(String level, String abbreviation, String message){

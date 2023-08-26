@@ -70,4 +70,21 @@ public class ComputerController {
             return new ResponseEntity(response, HttpStatus.BAD_REQUEST);
         }
     }
+
+    @GetMapping("get-by-id/{id}")
+    public ResponseEntity getComputerById(@PathVariable Long id) {
+        try {
+            HashMap response = new HashMap();
+            response.put("success", true);
+            response.put("data", computerService.findById(id));
+            response.put("message", "All Computers of Employee Fetched Successfully!");
+            return new ResponseEntity(response, HttpStatus.OK);
+        }catch (Exception e) {
+            HashMap response = new HashMap();
+            response.put("success", false);
+            response.put("error", e.getMessage());
+            response.put("message", "Error Occurred While Fetching the Computers!");
+            return new ResponseEntity(response, HttpStatus.BAD_REQUEST);
+        }
+    }
 }
