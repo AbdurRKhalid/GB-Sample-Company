@@ -12,4 +12,5 @@ public interface ComputerService {
     Optional<Computer> findById(Long id);
     void deleteById(Long id);
     Computer reassignComputer(Long id, String abbreviation);
+    Computer updateComputer(Computer computer);
 }

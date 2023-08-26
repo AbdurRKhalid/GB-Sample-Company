@@ -55,6 +55,11 @@ public class ComputerServiceImpl implements ComputerService {
         return computerRepository.save(computer);
     }
 
+    @Override
+    public Computer updateComputer(Computer computer) {
+        return computerRepository.save(computer);
+    }
+
     public ResponseEntity sendNotification(String level, String abbreviation, String message){
         String url = "http://localhost:8080/api/notify";
 

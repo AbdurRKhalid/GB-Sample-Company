@@ -121,4 +121,21 @@ public class ComputerController {
             return new ResponseEntity(response, HttpStatus.BAD_REQUEST);
         }
     }
+
+    @PutMapping("/update-computer")
+    public ResponseEntity updateComputer(@RequestBody Computer computer) {
+        try {
+            computerService.updateComputer(computer);
+            HashMap response = new HashMap();
+            response.put("success", true);
+            response.put("message", "Computer Updated Successfully!");
+            return new ResponseEntity(response, HttpStatus.OK);
+        }catch (Exception e) {
+            HashMap response = new HashMap();
+            response.put("success", false);
+            response.put("error", e.getMessage());
+            response.put("message", "Error Occurred While Updating Computer!");
+            return new ResponseEntity(response, HttpStatus.BAD_REQUEST);
+        }
+    }
 }
